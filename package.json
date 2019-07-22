@@ -4,6 +4,7 @@
   "description": "An API to manage population in a given area",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node index.js",
     "test": "jest"
   },
   "repository": {
@@ -11,7 +12,11 @@
     "url": "population-manager"
   },
   "keywords": [
-    "population"
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose",
+    "Population"
   ],
   "author": "Abishai Omari",
   "license": "ISC",
@@ -27,8 +32,6 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
-    "nodemon": "^1.19.1",
-    "sequelize": "^5.10.1",
-    "sequelize-cli": "^5.5.0"
+    "nodemon": "^1.19.1"
   }
 }
