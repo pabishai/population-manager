@@ -1,8 +1,10 @@
+import dotenv from "dotenv";
 import app from "./app/index";
 import databaseConnection from "./app/utils/databaseConnection";
-import databaseConfig from "./app/config/database.config";
 
-databaseConnection(databaseConfig.url);
+dotenv.config();
+
+databaseConnection(process.env.MONGODB_URI);
 
 // listen for requests
 app.listen(3000, () => {
