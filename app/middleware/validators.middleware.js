@@ -5,7 +5,7 @@ export const isNumberic = [
     .isNumeric()
     .withMessage("Location must be a number value"),
   check("male")
-    .isNumeric()
+    .isNumeric({ gt: 0 })
     .withMessage("male population must be a number"),
   check("female")
     .isNumeric()

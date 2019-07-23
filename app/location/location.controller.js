@@ -40,7 +40,7 @@ export const addLocationPopulation = async (req, res, next) => {
     next();
   }
 
-  return res.status(200).send(newLocationData);
+  return res.status(201).send(newLocationData);
 };
 
 export const viewPopulationData = async (req, res, next) => {
@@ -84,8 +84,8 @@ export const updatePopulationData = async (req, res, next) => {
   try {
     updatedLocation = await Location.findOne({ code: location });
     if (!updatedLocation) {
-      return res.status(404).send({
-        message: "location not found"
+      return res.status(400).send({
+        message: "invalid location"
       });
     }
     updatedLocation.set(params);

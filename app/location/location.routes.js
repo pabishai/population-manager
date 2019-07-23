@@ -5,6 +5,7 @@ import {
 } from "../middleware/validators.middleware";
 import validatorHandler from "../middleware/validatorHandler.middleware";
 import validateUrlParams from "../middleware/validateUrlParam.middleware";
+import validateNegatives from "../middleware/validateNegatives.middlewre";
 
 import {
   addLocationPopulation,
@@ -15,12 +16,19 @@ import {
 
 const router = express.Router();
 
-router.post("", isNumberic, validatorHandler, addLocationPopulation);
+router.post(
+  "",
+  isNumberic,
+  validatorHandler,
+  validateNegatives,
+  addLocationPopulation
+);
 router.put(
   "/:location",
   validateUrlParams,
   isOptionalAndNumeric,
   validatorHandler,
+  validateNegatives,
   updatePopulationData
 );
 router.get("", viewPopulationData);

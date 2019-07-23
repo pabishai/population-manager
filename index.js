@@ -1,18 +1,8 @@
-import express from "express";
-import bodyParser from "body-parser";
-import locationRoutes from "./app/location/location.routes";
+import app from "./app/index";
 import databaseConnection from "./app/utils/databaseConnection";
-import serverErrorMidleware from "./app/middleware/serverError.midleware";
+import databaseConfig from "./app/config/database.config";
 
-databaseConnection();
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(bodyParser.json());
-
-app.use("/location", locationRoutes, serverErrorMidleware);
+databaseConnection(databaseConfig.url);
 
 // listen for requests
 app.listen(3000, () => {

@@ -1,0 +1,145 @@
+swagger: '2.0'
+info:
+  title: SMS Server
+  description: >-
+    This is the official API for for a population census management app. It assumes authentication has already been done by the application using it and focusses on the location and the numbers. Locations are saved using the area code to increase accuracy
+  version: 1.0.0
+basePath: /
+schemes:
+  - https
+  - http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /location:
+    post:
+      tags:
+        - Location
+      summary: POST new location
+      description: Creates new location data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: message
+          description: Authentication parameters
+          required: true
+          schema:
+            type: object
+            properties:
+              location:
+                type: number
+                example: 254
+              female:
+                type: number
+                example: 10000
+              male:
+                type: number
+                example: 200000
+      responses:
+        '201':
+          description: CREATED
+        '400':
+          description: Bad Request
+      security:
+    get:
+      tags:
+        - Location
+      summary: GET all location population data
+      description: Fetches the saved location population data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+      security:
+
+  /location/{location}:
+    put:
+      tags:
+        - Location
+      summary: UPDATE an existing location
+      description: Updates the population data for an existing location
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: location
+          description: Area code of the location
+          required: true
+          schema:
+            type: number
+        - in: body
+          name: message
+          description: Authentication parameters
+          required: true
+          schema:
+            type: object
+            properties:
+              female:
+                type: number
+                example: 10000
+              male:
+                type: number
+                example: 200000
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      security:
+    get:
+      tags:
+        - Location
+      summary: GET single location population data
+      description: Fetches one saved location population data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: location
+        description: Area code of the location
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          description: OK
+      security:
+    delete:
+      tags:
+        - Location
+      summary: DELETE single location population data
+      description: Deletes a specific location and its population data
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: path
+        name: location
+        description: Area code of the location
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+      security:
+
+externalDocs:
+  description: Source code
+  url: 'https://github.com/PAbishai/sms_server'
